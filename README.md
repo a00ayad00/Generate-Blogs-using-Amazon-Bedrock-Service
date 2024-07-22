@@ -16,4 +16,4 @@
 
 **Example**
 <br>Input Prompt: Write a blog of about 200 words about *Machine Learning and GenAI*
-<br>Output File: See *output.txt*
+<br>Output File: See *Machine Learning and GenAI.txt*

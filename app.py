@@ -1,5 +1,4 @@
 import boto3, botocore, json
-from datetime import datetime
 
 
 def generate_blog_using_bedrock(topic:str) -> str:
@@ -35,14 +34,13 @@ def lambda_handler(event, context):
     generated_blog = generate_blog_using_bedrock(topic = blogtopic)
 
     if generated_blog:
-        current_time = datetime.now().strftime('%H%M%S')
-        s3_key = f'bedrock_blogs/blogtopic_{current_time}.txt'
+        s3_key = f'bedrock_blogs/{blogtopic}.txt'
         s3_bucket = 'bedrock-compartment'
 
         s3 = boto3.client('s3')
         try:
             s3.put_object(Bucket = s3_bucket, Key = s3_key, Body = generated_blog)
-            print("Code saved to s3")
+            print("File saved to s3")
         except Exception as e:
             print("Error when saving the code to s3")
 
